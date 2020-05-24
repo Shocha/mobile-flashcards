@@ -1,4 +1,4 @@
-import React,{Compnent} from 'react'
+import React,{Component} from 'react'
 import { Stylesheet, Text, View } from 'react-native'
 import {getData} from '../utils/api'
 

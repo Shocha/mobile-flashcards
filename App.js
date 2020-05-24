@@ -1,13 +1,15 @@
 import * as React from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
-import { TabNavigator } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation-stack'
 import Decklist from './components/DeckList'
 import AddDeck from './components/AddDeck'
+import DeckView from './components/DeckView'
 import { Ionicons } from '@expo/vector-icons'
 import { blue, white ,black} from './utils/colors'
+import { createAppContainer } from 'react-navigation'
+import { createBottomTabNavigator } from 'react-navigation-tabs'
 
-
-const Tabs = TabNavigator({
+const Tabs = createBottomTabNavigator({
   Decklist: {
     screen: Decklist,
     navigationOptions: {
@@ -42,11 +44,14 @@ const Tabs = TabNavigator({
 })
 
 
+
+const NavTabs = createAppContainer(Tabs)
+
 export default class App extends React.Component {
   render() {
     return (
       <View >
-        <Tabs/>
+        <NavTabs/>
       </View>
     );
   }
