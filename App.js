@@ -5,9 +5,9 @@ import Decklist from './components/DeckList'
 import AddDeck from './components/AddDeck'
 import DeckView from './components/DeckView'
 import { Ionicons } from '@expo/vector-icons'
-import { blue, white ,black} from './utils/colors'
+import { blue, white } from './utils/colors'
 import { createAppContainer } from 'react-navigation'
-import { createBottomTabNavigator } from 'react-navigation-tabs'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 const Tabs = createBottomTabNavigator({
   Decklist: {
@@ -51,7 +51,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View >
-        <NavTabs/>
+        <NavTabs />
       </View>
     );
   }
