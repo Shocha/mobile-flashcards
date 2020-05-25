@@ -6,7 +6,7 @@ class DeckList extends React.Component{
     render(){
         const decks=getData()
 
-        return(<View >
+        return(<View style={styles.container}>
             {Object.keys(decks).map((deck)=>{
                 const {title,questions}=decks[deck]
                 return(
@@ -21,5 +21,12 @@ class DeckList extends React.Component{
         </View>)
     }
 }
+const styles= Stylesheet.create({
+    container:{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center'
+    }
+})
 
 export default DeckList
