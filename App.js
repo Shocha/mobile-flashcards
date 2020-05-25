@@ -64,7 +64,7 @@ export default class App extends React.Component {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Home" component={Tab} />
-          <Stack.Screen name="Deck" component={DeckView} />
+          <Stack.Screen name="DeckView" component={DeckView} />
         </Stack.Navigator>
       </NavigationContainer>
       </Provider>

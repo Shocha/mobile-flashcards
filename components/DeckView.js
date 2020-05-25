@@ -1,24 +1,33 @@
-import React,{Component} from 'react'
+import React, { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import {getData} from '../utils/api'
+import { getData } from '../utils/api'
+import { connect } from 'react-redux'
 
-class DeckView extends Component{
-    render(){
-        const deck=this.props.navigation.state.params.Id
-        const decks=getData()
-        return(
+
+class DeckView extends Component {
+    render() {
+
+        return (
             <View styles={styles.container}>
-                <Text>{decks[deck].title}</Text>
-                <Text>{decks[deck].questions.length}</Text>
+                <Text>{this.props.deck.title}</Text>
             </View>
         )
     }
 }
-const styles= StyleSheet.create({
-    container:{
-        flex:1,
-        justifyContent:'center',
-        alignItems:'center'
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 })
-export default DeckView
+
+function mapStateToProps(decks, { navigation }) {
+    const { deckId } = navigation.state.params
+    const deck = decks[deckId]
+    return {
+        deck,
+        deckId
+    }
+}
+export default connect(mapStateToProps)(DeckView)

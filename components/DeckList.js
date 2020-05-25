@@ -50,7 +50,9 @@ const styles = StyleSheet.create({
     }
 })
 function mapStateToProps(decks) {
-    return decks
+    return {
+        decks
+    }
 }
 
 export default connect(mapStateToProps)(DeckList)
