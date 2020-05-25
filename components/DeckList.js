@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
-import { getData } from '../utils/api'
-import { connect } from 'react-redux'
 import { getDecks } from '../utils/api'
+import { connect } from 'react-redux'
 import { receiveDecks } from '../actions'
 
 
