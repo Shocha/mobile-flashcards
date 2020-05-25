@@ -7,10 +7,10 @@ import { receiveDecks } from '../actions'
 
 
 class DeckList extends React.Component {
-    state={
-        ready:false
+    state = {
+        ready: false
     }
-    
+
     componentDidMount = () => {
         const { dispatch } = this.props
 
@@ -23,15 +23,15 @@ class DeckList extends React.Component {
     }
 
     render() {
-        const {decks} = this.props
+        const { decks } = this.props
 
         return (<View style={styles.container}>
             {Object.keys(decks).map((deck) => {
-                const { title, questions } = decks[deck]
+
                 return (
                     <View key={deck}>
-                        <Text>{title}</Text>
-                        
+                        <Text>{deck}</Text>
+
                         <Button onPress={() => this.props.navigation.navigate('DeckView', { id: deck })} title="view deck">
                         </Button>
                     </View>
