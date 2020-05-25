@@ -1,34 +1,57 @@
-import React,{Component} from 'react'
+import React, { Component } from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
-import {getData} from '../utils/api'
+import { getData } from '../utils/api'
+import { connect } from 'react-redux'
+import { getDecks } from '../utils/api'
+import { receiveDecks } from '../actions'
 
-class DeckList extends React.Component{
-    render(){
-        const decks=getData()
 
-        return(<View style={styles.container}>
-            {Object.keys(decks).map((deck)=>{
-                const {title,questions}=decks[deck]
-                return(
+
+class DeckList extends React.Component {
+    state={
+        ready:false
+    }
+    
+    componentDidMount = () => {
+        const { dispatch } = this.props
+
+        getDecks()
+            .then((decks) => {
+                dispatch(receiveDecks(decks))
+            }).then(() => this.setState(() => ({
+                ready: true,
+            })))
+    }
+
+    render() {
+        const {decks} = this.props
+
+        return (<View style={styles.container}>
+            {Object.keys(decks).map((deck) => {
+                const { title, questions } = decks[deck]
+                return (
                     <View key={deck}>
-                    <Text>{title}</Text>
-                    <Text>{questions.length}</Text>
-                    <Button onPress={()=>this.props.navigation.navigate('DeckView',{id:deck})} title="view deck">
+                        <Text>{title}</Text>
+                        
+                        <Button onPress={() => this.props.navigation.navigate('DeckView', { id: deck })} title="view deck">
                         </Button>
                     </View>
-            )
+                )
             })}
-            
+
 
         </View>)
     }
 }
-const styles= StyleSheet.create({
-    container:{
-        flex:1,
-        justifyContent:'center',
-        alignItems:'center'
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 })
+function mapStateToProps(decks) {
+    return decks
+}
 
-export default DeckList
+export default connect(mapStateToProps)(DeckList)
