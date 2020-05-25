@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
-import { createStackNavigator } from 'react-navigation-stack';
+
 import Decklist from './components/DeckList';
 import AddDeck from './components/AddDeck';
 import DeckView from './components/DeckView';

@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import { Stylesheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Button } from 'react-native'
 import {getData} from '../utils/api'
 
 class DeckList extends React.Component{
@@ -13,6 +13,8 @@ class DeckList extends React.Component{
                     <View key={deck}>
                     <Text>{title}</Text>
                     <Text>{questions.length}</Text>
+                    <Button onPress={()=>this.props.navigation.navigate('DeckView',{id:deck})} title="view deck">
+                        </Button>
                     </View>
             )
             })}
@@ -21,7 +23,7 @@ class DeckList extends React.Component{
         </View>)
     }
 }
-const styles= Stylesheet.create({
+const styles= StyleSheet.create({
     container:{
         flex:1,
         justifyContent:'center',
