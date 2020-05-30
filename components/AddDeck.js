@@ -8,7 +8,7 @@ class AddDeck extends Component {
     state = {
         title: ''
     }
-    submitDeck() {
+    submitDeck=()=> {
         const { title } = this.state
 
 
