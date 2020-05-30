@@ -11,6 +11,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import {Provider} from 'react-redux'
 import reducer from './reducers'
 import {createStore} from  'redux'
+import AddNewCard from './components/AddNewCard';
 
 
 const Tabs = createBottomTabNavigator();
@@ -65,6 +66,7 @@ export default class App extends React.Component {
         <Stack.Navigator>
           <Stack.Screen name="Home" component={Tab} />
           <Stack.Screen name="DeckView" component={DeckView} />
+          <Stack.Screen name="AddNewCard" component={AddNewCard} />
         </Stack.Navigator>
       </NavigationContainer>
       </Provider>

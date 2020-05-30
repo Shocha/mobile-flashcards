@@ -47,3 +47,16 @@ export function saveDeckTitle(title) {
     }
   }))
 }
+
+export function addNewCard(title, card) {
+  return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
+    .then((results) => {
+      const decks = JSON.parse(results)
+      questionList = decks[title].questions
+      AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, json.stringify({
+        [title]: {
+          questions: [...questionList, card]
+        }
+      }))
+    })
+}

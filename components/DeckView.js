@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { getData } from '../utils/api'
 import { connect } from 'react-redux'
 import Button from './Button'
 
@@ -34,7 +33,6 @@ function mapStateToProps(decks, { route,navigation }) {
     console.log(deck)
     return {
         deck,
-        deckId,
         navigation
     }
 }
