@@ -5,16 +5,15 @@ import Button from './Button'
 
 class DeckView extends Component {
     render() {
-        const {deck}=this.props
+        const { deck } = this.props
         return (
             <View styles={styles.container}>
-                <Text>{deck.title}</Text>
-                <Text>{deck.questions.length}</Text>
-                <Button text="Add Card" onPressHandler={()=>this.props.navigation.navigate(
-                'AddNewCard',{deck, id: deck.title,})}
-               />
-                <Button text="Start Quiz" onPressHandler={()=>this.props.navigation.navigate(
-                'Quiz',{deck, id: deck,})}/>
+                <Text style={styles.title}>{deck.title}</Text>
+                <Text style={styles.num}>{deck.questions.length} number of Cards</Text>
+                <Button text="Add Card" onPressHandler={() => this.props.navigation.navigate(
+                    'AddNewCard', { deck, id: deck.title, })} />
+                <Button text="Start Quiz" onPressHandler={() => this.props.navigation.navigate(
+                    'Quiz', { deck, id: deck, })} />
             </View>
         )
     }
@@ -24,13 +23,22 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    title: {
+        alignSelf: 'center',
+        fontSize: 30,
+        margin: 5,
+    },
+    num: {
+        alignSelf: 'center',
+        fontSize: 20,
+        margin: 5,
     }
 })
 
-function mapStateToProps(decks, { route,navigation }) {
+function mapStateToProps(decks, { route, navigation }) {
     const deckId = route.params.id
     const deck = decks[deckId]
-    console.log(deck)
     return {
         deck,
         navigation

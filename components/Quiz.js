@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 
 class Quiz extends Component {
@@ -10,7 +10,7 @@ class Quiz extends Component {
     state = {
         start: 0,
         showAnswer: false,
-        score:0,
+        score: 0,
 
     }
 
@@ -42,13 +42,23 @@ class Quiz extends Component {
     onGoBack = () => {
         this.props.navigation.goBack()
     }
+
     render() {
         const { questions } = this.props
-        const { start } = this.state
-        console.log(this.props.deck)
+        const { start,score,count } = this.state
+        
+if(count==0){
+    return(
+        <View>
+            <Text>No Cards to display</Text>
+        </View>
+    )
+}
 
         if (this.props.cardQuant === start) {
-
+            {
+                clearLocalNotification().then(setLocalNotification())
+            }
             return (<View>
                 <Text>Your Score is: {score}/{count}</Text>
                 <TouchableOpacity onPressHandler={this.onRestart}>
@@ -100,6 +110,7 @@ class Quiz extends Component {
         </View>)
     }
 }
+
 function mapStateToProps(decks, { route, navigation }) {
     const deck = route.params.id
     const title = deck.title
