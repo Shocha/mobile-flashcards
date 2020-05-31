@@ -11,7 +11,7 @@ class DeckView extends Component {
                 <Text>{deck.title}</Text>
                 <Text>{deck.questions.length}</Text>
                 <Button text="Add Card" onPressHandler={()=>this.props.navigation.navigate(
-                'AddNewCard',{deck, id: deck,})}
+                'AddNewCard',{deck, id: deck.title,})}
                />
                 <Button text="Start Quiz" onPressHandler={()=>this.props.navigation.navigate(
                 'Quiz',{deck, id: deck,})}/>
