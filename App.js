@@ -8,11 +8,11 @@ import { blue, white } from './utils/colors';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import {Provider} from 'react-redux'
+import { Provider } from 'react-redux'
 import reducer from './reducers'
-import {createStore} from  'redux'
+import { createStore } from 'redux'
 import AddNewCard from './components/AddNewCard';
-
+import { Quiz } from './components/Quiz';
 
 const Tabs = createBottomTabNavigator();
 
@@ -62,13 +62,14 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={createStore(reducer)}>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={Tab} />
-          <Stack.Screen name="DeckView" component={DeckView} />
-          <Stack.Screen name="AddNewCard" component={AddNewCard} />
-        </Stack.Navigator>
-      </NavigationContainer>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name="Home" component={Tab} />
+            <Stack.Screen name="DeckView" component={DeckView} />
+            <Stack.Screen name="AddNewCard" component={AddNewCard} />
+            <Stack.Screen name="Quiz" component={Quiz} />
+          </Stack.Navigator>
+        </NavigationContainer>
       </Provider>
     );
   }

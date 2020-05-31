@@ -6,7 +6,7 @@ import { receiveDecks } from '../actions'
 
 
 
-class DeckList extends React.Component {
+class DeckList extends Component {
     state = {
         ready: false
     }

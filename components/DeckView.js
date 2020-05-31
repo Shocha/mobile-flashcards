@@ -10,11 +10,11 @@ class DeckView extends Component {
             <View styles={styles.container}>
                 <Text>{deck.title}</Text>
                 <Text>{deck.questions.length}</Text>
-                <Button text="Add Card" onPress={()=>{this.props.navigation.navigate(
-                'AddNewCard',{deck, id: deck,})}}
+                <Button text="Add Card" onPressHandler={()=>this.props.navigation.navigate(
+                'AddNewCard',{deck, id: deck,})}
                />
-                <Button text="Start Quiz" onPress={()=>{this.props.navigation.navigate(
-                'Quiz',{deck, id: deck,})}}/>
+                <Button text="Start Quiz" onPressHandler={()=>this.props.navigation.navigate(
+                'Quiz',{deck, id: deck,})}/>
             </View>
         )
     }

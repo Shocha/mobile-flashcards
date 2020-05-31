@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-nativ
 import { connect } from 'react-redux'
 import { addNewCard } from '../utils/api'
 import { addCard } from '../actions'
+import { orange } from '../utils/colors'
+
 
 class AddNewCard extends Component {
     state = {
@@ -10,14 +12,14 @@ class AddNewCard extends Component {
         answerCard: ''
     }
 
-    changeAnswer = (value) => {
+    changeAnswer = (data) => {
         this.setState(() => {
-            questionCard: value
+            questionCard: data
         })
     }
-    changeQuestion = () => {
+    changeQuestion = (data) => {
         this.setState(() => {
-            answerCard: value
+            answerCard: data
         })
     }
 
@@ -35,12 +37,13 @@ class AddNewCard extends Component {
         navigation.goBack()
     }
     render() {
+        const { questionCard, answerCard } = this.state
         return (<View >
             <Text style={styles.title}>Add a Question Card!</Text>
-            <TextInput onChangeText={this.changeQuestion} style={styles.input} value={this.state.questionCard} />
-            <TextInput onChangeText={this.changeAnswer} style={styles.input} value={this.state.answerCard} />
-            <TouchableOpacity onPress={this.submitCard} disabled={questionCard == '' || answerCard == ''} >
-                <Text>Submit</Text>
+            <TextInput onChangeText={this.changeQuestion} placeholder='Enter the Question here' style={styles.input} value={this.state.questionCard} />
+            <TextInput onChangeText={this.changeAnswer} placeholder='Enter the Answer here' style={styles.input} value={this.state.answerCard} />
+            <TouchableOpacity onPress={this.submitCard} disabled={questionCard == '' || answerCard == ''} style={styles.btn} >
+                <Text style={styles.btntxt}>Submit</Text>
             </TouchableOpacity>
         </View>
 
@@ -61,35 +64,26 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 5,
         backgroundColor: '#ffffff'
+    }, btn: {
+        marginTop: 35,
+        marginLeft: 100,
+        backgroundColor: orange,
+        padding: 20,
+        paddingLeft: 30,
+        paddingRight: 30,
+        height: 45,
+        width: 200,
+        borderRadius: 5,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    btntxt: {
+        justifyContent: "center"
     }
 })
 
-{/*margin: 10,
-borderColor: summerBlue,
-borderWidth: 1,
-borderRadius: 2,
-padding: 4,
-width: 300,
-fontSize: 24,
-submitBtn: {
-    marginTop: 200,
-    backgroundColor: summerBlue,
-    padding: 10,
-    paddingLeft: 30,
-    paddingRight: 30,
-    height: 45,
-    width: 200,
-    borderRadius: 2,
-    justifyContent: 'center',
-    alignItems: 'center'
-},
-submitBtnText: {
-    color: white,
-    fontSize: 22,
-    textAlign: 'center'
-}*/}
 
-function mapStateToProps({ navigation, route }) {
+function mapStateToProps(state, { navigation, route }) { //navigation and route are component props
     const deckId = route.params.id
     console.log(deckId)
     return {
