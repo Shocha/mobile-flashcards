@@ -11,24 +11,14 @@ class AddNewCard extends Component {
         questionCard: '',
         answerCard: ''
     }
-
-    changeAnswer = (data) => {
-        this.setState(() => {
-            questionCard: data
-        })
-    }
-    changeQuestion = (data) => {
-        this.setState(() => {
-            answerCard: data
-        })
-    }
-
     submitCard = () => {
         const title = this.props.deckId
         const { dispatch, navigation } = this.props
+        const {questionCard,answerCard}=this.state
+        
         card = {
-            questionCard,
-            answerCard
+            questionC:questionCard,
+            answerC:answerCard
         }
 
         addNewCard(title, card).then(() => {
@@ -40,8 +30,8 @@ class AddNewCard extends Component {
         const { questionCard, answerCard } = this.state
         return (<View >
             <Text style={styles.title}>Add a Question Card!</Text>
-            <TextInput onChangeText={this.changeQuestion} placeholder='Enter the Question here' style={styles.input} value={this.state.questionCard} />
-            <TextInput onChangeText={this.changeAnswer} placeholder='Enter the Answer here' style={styles.input} value={this.state.answerCard} />
+            <TextInput onChangeText={(data)=>this.setState( {questionCard: data})} placeholder='Enter the Question here' style={styles.input} value={this.state.questionCard} />
+            <TextInput onChangeText={(data)=>this.setState( {answerCard: data})} placeholder='Enter the Answer here' style={styles.input} value={this.state.answerCard} />
             <TouchableOpacity onPress={this.submitCard} disabled={questionCard == '' || answerCard == ''} style={styles.btn} >
                 <Text style={styles.btntxt}>Submit</Text>
             </TouchableOpacity>

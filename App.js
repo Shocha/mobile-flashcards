@@ -12,7 +12,7 @@ import { Provider } from 'react-redux'
 import reducer from './reducers'
 import { createStore } from 'redux'
 import AddNewCard from './components/AddNewCard';
-import { Quiz } from './components/Quiz';
+import  Quiz  from './components/Quiz';
 
 const Tabs = createBottomTabNavigator();
 
