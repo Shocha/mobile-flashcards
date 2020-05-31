@@ -53,7 +53,7 @@ export function addNewCard(title, card) {
     .then((results) => {
       const decks = JSON.parse(results)
       questionList = decks[title].questions
-      AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, json.stringify({
+      AsyncStorage.mergeItem(FLASHCARDS_STORAGE_KEY, JSON.stringify({
         [title]: {
           questions: [...questionList, card]
         }

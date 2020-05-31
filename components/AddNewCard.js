@@ -16,7 +16,7 @@ class AddNewCard extends Component {
         const { dispatch, navigation } = this.props
         const {questionCard,answerCard}=this.state
         
-        card = {
+        const card = {
             questionC:questionCard,
             answerC:answerCard
         }
