@@ -65,7 +65,7 @@ if(count==0){
                     <Text>Restart Quiz</Text>
                 </TouchableOpacity>
                 <TouchableOpacity>
-                    <Text onPressHandler={this.onGoBack}>Back To Deck</Text>
+                    <Text onPressHandler={()=>this.onGoBack()}>Back To Deck</Text>
                 </TouchableOpacity>
             </View>)
         }
