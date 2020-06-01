@@ -21,8 +21,9 @@ class AddDeck extends Component {
     render() {
         return (<View style={styles.container}>
             <Text style={styles.title}>Please Enter the deck name</Text>
+
             <TextInput onChangeText={(title) => this.setState({ title: title })} value={this.state.title} style={styles.input} />
-            <TouchableOpacity onPress={this.submitDeck} title="Add Deck" style={styles.btn}><Text style={styles.btntxt}>Submit</Text></TouchableOpacity>
+            <TouchableOpacity onPress={this.submitDeck}  disabled={this.state.title === ''} title="Add Deck" style={styles.btn}><Text style={styles.btntxt}>Submit</Text></TouchableOpacity>
         </View>)
     }
 }

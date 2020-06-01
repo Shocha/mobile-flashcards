@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { connect } from 'react-redux'
-import { TouchableOpacity } from 'react-native-gesture-handler'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
-import { lightRed, lime, blue, orange } from '../utils/colors'
 import Button from './Button'
 
 class Quiz extends Component {
@@ -118,19 +116,6 @@ const styles = StyleSheet.create({
         fontSize: 30,
         margin: 5,
     },
-    btn: {
-        alignSelf: 'center',
-        margin: 10,
-        padding: 10,
-        borderRadius: 4,
-        borderWidth: 2,
-        width: 120,
-        height: 40,
-        backgroundColor: lightRed,
-        flex: 1
-    },
-
-
     btntxt: {
         justifyContent: "center",
         alignSelf: 'center',

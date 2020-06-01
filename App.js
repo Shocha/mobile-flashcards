@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Platform } from 'react-native';
 import Decklist from './components/DeckList';
 import AddDeck from './components/AddDeck';
 import DeckView from './components/DeckView';
@@ -12,7 +12,7 @@ import { Provider } from 'react-redux'
 import reducer from './reducers'
 import { createStore } from 'redux'
 import AddNewCard from './components/AddNewCard';
-import  Quiz  from './components/Quiz';
+import Quiz from './components/Quiz';
 
 const Tabs = createBottomTabNavigator();
 
