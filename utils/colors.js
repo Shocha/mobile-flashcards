@@ -1,6 +1,5 @@
-export const purple = '#292477'
+export const lime = '#00FF00'
 export const white = '#fff'
 export const orange = '#f26f28'
 export const blue = '#2196f3'
-export const pink = '#b93fb3'
 export const lightRed='#f83a3a'

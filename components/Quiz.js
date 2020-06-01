@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
-
+import { lightRed, lime, blue, orange } from '../utils/colors'
 
 class Quiz extends Component {
 
@@ -44,65 +44,63 @@ class Quiz extends Component {
     }
 
     render() {
-        const { questions } = this.props
-        const { start,score,count } = this.state
-        
-if(count==0){
-    return(
-        <View>
-            <Text>No Cards to display</Text>
-        </View>
-    )
-}
+        const { questions, cardQuant } = this.props
+        const { start, score } = this.state
 
-        if (this.props.cardQuant === start) {
+        if (cardQuant == 0) {
+            return (
+                <View>
+                    <Text style={styles.title}>No Cards to display</Text>
+                </View>
+            )
+        }
+
+        if (cardQuant === start) {
             {
                 clearLocalNotification().then(setLocalNotification())
             }
             return (<View>
-                <Text>Your Score is: {score}/{count}</Text>
-                <TouchableOpacity onPressHandler={this.onRestart}>
-                    <Text>Restart Quiz</Text>
+                <Text style={styles.title}>Your Score is: {score}/{cardQuant}</Text>
+                <TouchableOpacity onPress={() => this.onRestart()} style={styles.btnor}>
+                    <Text style={styles.btntxt}>Restart Quiz</Text>
                 </TouchableOpacity>
-                <TouchableOpacity>
-                    <Text onPressHandler={()=>this.onGoBack()}>Back To Deck</Text>
+                <TouchableOpacity onPress={() => this.onGoBack()} style={styles.btnylw}>
+                    <Text style={styles.btntxt}>Back To Deck</Text>
                 </TouchableOpacity>
             </View>)
         }
         return (<View>
-            <Text>Quiz Page</Text>
-            <Text>{questions[start].question}</Text>
+            <Text style={styles.title}>Quiz Page</Text>
+            <Text style={styles.nrmtxt}>{questions[start].question}</Text>
 
             {!this.state.showAnswerArea && (
                 <View>
                     <TouchableOpacity
-                        onPress={this.showCorrectAns}>
-                        <Text >Show Answer</Text>
+                        onPress={this.showCorrectAns} style={styles.btnbl}>
+                        <Text style={styles.btntxt}>Show Answer</Text>
                     </TouchableOpacity>
                 </View>
             )}
 
             {this.state.showAnswerArea && (
                 <View>
-                    <Text >Show Answer</Text>
-                    <Text >{questions[start].answer}</Text>
 
-                    <Text >Did you get the answer?</Text>
+                    <Text style={styles.nrmtxt}>{questions[start].answer}</Text>
 
-
-
+                    <Text style={styles.nrmtxt}>Did you get the answer?</Text>
                     <View style={{ flex: 1 }}>
                         <TouchableOpacity
-                            onPress={() => this.result(true)}>
-                            <Text >Correct</Text>
+                            onPress={() => this.result(true)}
+                            style={styles.btnscs}>
+                            <Text style={styles.btntxt}>Correct</Text>
                         </TouchableOpacity>
                     </View>
 
                     <View style={{ flex: 1 }}>
                         <TouchableOpacity
-                            onPress={() => this.result(false)}>
+                            onPress={() => this.result(false)} style={styles.btn}>
 
-                            <Text >Incorrect</Text>
+                            <Text style={styles.btntxt}>Incorrect</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -115,15 +113,90 @@ function mapStateToProps(decks, { route, navigation }) {
     const deck = route.params.id
     const title = deck.title
     const questions = deck.questions
-    console.log(questions)
     const cardQuant = questions.length
     return {
-        deck,
         title,
         questions,
         cardQuant,
         navigation
     }
 }
+const styles = StyleSheet.create({
+    title: {
+        alignSelf: 'center',
+        fontSize: 30,
+        margin: 5,
+    },
+    btn: {
+        alignSelf: 'center',
+        margin: 10,
+        padding: 10,
+        borderRadius: 4,
+        borderWidth: 2,
+        width: 120,
+        height: 40,
+        backgroundColor: lightRed,
+        flex: 1
+    },
+    btnscs: {
+        alignSelf: 'center',
+        margin: 10,
+        padding: 10,
+        borderRadius: 4,
+        borderWidth: 2,
+        width: 120,
+        height: 40,
+        backgroundColor: lime,
+        flex: 1
+    },
 
+    btntxt: {
+        justifyContent: "center",
+        alignSelf: 'center',
+        margin: 5,
+    },
+    nrmtxt: {
+        alignSelf: 'center',
+        fontSize: 20,
+        margin: 5,
+
+    },
+    btnbl: {
+        alignSelf: 'center',
+        margin: 10,
+        padding: 10,
+        borderRadius: 4,
+        borderWidth: 2,
+        width: 120,
+        height: 40,
+        backgroundColor: blue,
+        flex: 1
+
+
+    },
+    btnor:{
+        alignSelf: 'center',
+        margin: 10,
+        padding: 10,
+        borderRadius: 4,
+        borderWidth: 2,
+        width: 120,
+        height: 40,
+        backgroundColor: orange,
+        flex: 1
+    },
+    btnylw:{
+        alignSelf: 'center',
+        margin: 10,
+        padding: 10,
+        borderRadius: 4,
+        borderWidth: 2,
+        width: 120,
+        height: 40,
+        backgroundColor: '#ffff1a',
+        flex: 1
+    }
+
+
+})
 export default connect(mapStateToProps)(Quiz)

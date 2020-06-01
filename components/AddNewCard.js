@@ -75,7 +75,6 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state, { navigation, route }) { //navigation and route are component props
     const deckId = route.params.id
-    console.log(deckId)
     return {
         deckId,
         navigation
