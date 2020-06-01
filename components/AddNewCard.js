@@ -17,8 +17,8 @@ class AddNewCard extends Component {
         const {questionCard,answerCard}=this.state
         
         const card = {
-            questionC:questionCard,
-            answerC:answerCard
+            question:questionCard,
+            answer:answerCard
         }
 
         addNewCard(title, card).then(() => {

@@ -36,7 +36,12 @@ const styles = StyleSheet.create({
     }
 })
 
-function mapStateToProps(decks, { route, navigation }) {
+function mapStateToProps(state, props) {
+
+    const decks = state;
+
+    const { route, navigation } = props;
+
     const deckId = route.params.id
     const deck = decks[deckId]
     return {
