@@ -13,7 +13,7 @@ class DeckView extends Component {
                 <Button text="Add Card" onPressHandler={() => this.props.navigation.navigate(
                     'AddNewCard', { deck, id: deck.title, })} />
                 <Button text="Start Quiz" onPressHandler={() => this.props.navigation.navigate(
-                    'Quiz', { deck, id: deck, })} />
+                    'Quiz', { deck, id: deck, })}/>
             </View>
         )
     }
@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         fontSize: 20,
         margin: 5,
-    }
+    },
+    
 })
 
 function mapStateToProps(state, props) {

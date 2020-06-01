@@ -9,7 +9,7 @@ import { receiveDecks } from '../actions'
 class DeckList extends Component {
     state = {
         ready: false,
-        scaleValue: new Animated.Value(1)
+        bounceValue: new Animated.Value(1)
     }
 
     componentDidMount = () => {
@@ -23,14 +23,15 @@ class DeckList extends Component {
             })))
     }
     newLoc = (deck) => {
-        let { scaleValue } = this.state
+        let { bounceValue } = this.state
 
         Animated.sequence([
-            Animated.timing(scaleValue, { duration: 200, toValue: 1.04 }),
-            Animated.spring(scaleValue, { toValue: 1, friction: 4 }),
+            Animated.timing(bounceValue, { duration: 200, toValue: 1.04 }),
+            Animated.spring(bounceValue, { toValue: 1, friction: 4 }),
         ]).start()
 
-        this.props.navigation.navigate('DeckView', { id: deck })
+        setTimeout(() => {    
+            this.props.navigation.navigate('DeckView', { id: deck }) }, 500)
     }
     render() {
         const { decks } = this.props

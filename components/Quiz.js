@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 import { lightRed, lime, blue, orange } from '../utils/colors'
+import Button from './Button'
 
 class Quiz extends Component {
 
@@ -11,7 +12,7 @@ class Quiz extends Component {
         start: 0,
         showAnswer: false,
         score: 0,
-
+        moveOut:'Answer'
     }
 
     showCorrectAns = () => {
@@ -28,6 +29,7 @@ class Quiz extends Component {
         }
         this.setState((current) => ({
             start: current.start + 1,
+            moveOut:'Answer'
         }))
     }
 
@@ -61,12 +63,9 @@ class Quiz extends Component {
             }
             return (<View>
                 <Text style={styles.title}>Your Score is: {score}/{cardQuant}</Text>
-                <TouchableOpacity onPress={() => this.onRestart()} style={styles.btnor}>
-                    <Text style={styles.btntxt}>Restart Quiz</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.onGoBack()} style={styles.btnylw}>
-                    <Text style={styles.btntxt}>Back To Deck</Text>
-                </TouchableOpacity>
+                <Button onPressHandler={() => this.onRestart()} text='Restart Quiz'/>
+
+                <Button onPressHandler={() => this.onGoBack()} text='Back To Deck'/>
             </View>)
         }
         return (<View>
@@ -75,10 +74,8 @@ class Quiz extends Component {
 
             {!this.state.showAnswerArea && (
                 <View>
-                    <TouchableOpacity
-                        onPress={this.showCorrectAns} style={styles.btnbl}>
-                        <Text style={styles.btntxt}>Show Answer</Text>
-                    </TouchableOpacity>
+                    <Button
+                        onPressHandler={()=>this.showCorrectAns()} text='Show Answer' />
                 </View>
             )}
 
@@ -88,20 +85,15 @@ class Quiz extends Component {
                     <Text style={styles.nrmtxt}>{questions[start].answer}</Text>
 
                     <Text style={styles.nrmtxt}>Did you get the answer?</Text>
+
                     <View style={{ flex: 1 }}>
-                        <TouchableOpacity
-                            onPress={() => this.result(true)}
-                            style={styles.btnscs}>
-                            <Text style={styles.btntxt}>Correct</Text>
-                        </TouchableOpacity>
+                        <Button
+                            onPressHandler={() => this.result(true)}
+                            text='Correct' />
                     </View>
 
                     <View style={{ flex: 1 }}>
-                        <TouchableOpacity
-                            onPress={() => this.result(false)} style={styles.btn}>
-
-                            <Text style={styles.btntxt}>Incorrect</Text>
-                        </TouchableOpacity>
+                        <Button text='Incorrect' onPressHandler={() => this.result(false)} />
                     </View>
                 </View>
             )}
@@ -159,7 +151,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         fontSize: 20,
         margin: 5,
-
+        padding: 20
     },
     btnbl: {
         alignSelf: 'center',
@@ -174,7 +166,7 @@ const styles = StyleSheet.create({
 
 
     },
-    btnor:{
+    btnor: {
         alignSelf: 'center',
         margin: 10,
         padding: 10,
@@ -185,7 +177,7 @@ const styles = StyleSheet.create({
         backgroundColor: orange,
         flex: 1
     },
-    btnylw:{
+    btnylw: {
         alignSelf: 'center',
         margin: 10,
         padding: 10,

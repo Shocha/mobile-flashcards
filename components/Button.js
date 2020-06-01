@@ -15,16 +15,18 @@ const styles = StyleSheet.create({
     btnStyle: {
         alignSelf: 'center',
         margin: 10,
-        padding: 10,
-        borderRadius: 4,
+        padding: 25,
+        borderRadius: 6,
         borderWidth:2,
-        width:120,
-        height:40,
+        width:150,
+        height:60,
         backgroundColor:'#3cb371',
-        flex:1
+        flex:1,
+        justifyContent: "center",
     },
     txtStyle: {
         color: white,
-        alignSelf: 'center'
+        alignSelf: 'center',
+        justifyContent: "center",
     }
 })
