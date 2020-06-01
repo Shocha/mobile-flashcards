@@ -11,8 +11,7 @@ class Quiz extends Component {
     state = {
         start: 0,
         showAnswer: false,
-        score: 0,
-        moveOut:'Answer'
+        score: 0
     }
 
     showCorrectAns = () => {
@@ -29,7 +28,7 @@ class Quiz extends Component {
         }
         this.setState((current) => ({
             start: current.start + 1,
-            moveOut:'Answer'
+            
         }))
     }
 
@@ -63,9 +62,9 @@ class Quiz extends Component {
             }
             return (<View>
                 <Text style={styles.title}>Your Score is: {score}/{cardQuant}</Text>
-                <Button onPressHandler={() => this.onRestart()} text='Restart Quiz'/>
+                <Button onPressHandler={() => this.onRestart()} text='Restart Quiz' />
 
-                <Button onPressHandler={() => this.onGoBack()} text='Back To Deck'/>
+                <Button onPressHandler={() => this.onGoBack()} text='Back To Deck' />
             </View>)
         }
         return (<View>
@@ -75,7 +74,7 @@ class Quiz extends Component {
             {!this.state.showAnswerArea && (
                 <View>
                     <Button
-                        onPressHandler={()=>this.showCorrectAns()} text='Show Answer' />
+                        onPressHandler={() => this.showCorrectAns()} text='Show Answer' />
                 </View>
             )}
 
@@ -86,13 +85,13 @@ class Quiz extends Component {
 
                     <Text style={styles.nrmtxt}>Did you get the answer?</Text>
 
-                    <View style={{ flex: 1 }}>
+                    <View >
                         <Button
                             onPressHandler={() => this.result(true)}
                             text='Correct' />
                     </View>
 
-                    <View style={{ flex: 1 }}>
+                    <View >
                         <Button text='Incorrect' onPressHandler={() => this.result(false)} />
                     </View>
                 </View>
@@ -130,17 +129,7 @@ const styles = StyleSheet.create({
         backgroundColor: lightRed,
         flex: 1
     },
-    btnscs: {
-        alignSelf: 'center',
-        margin: 10,
-        padding: 10,
-        borderRadius: 4,
-        borderWidth: 2,
-        width: 120,
-        height: 40,
-        backgroundColor: lime,
-        flex: 1
-    },
+
 
     btntxt: {
         justifyContent: "center",
@@ -152,43 +141,6 @@ const styles = StyleSheet.create({
         fontSize: 20,
         margin: 5,
         padding: 20
-    },
-    btnbl: {
-        alignSelf: 'center',
-        margin: 10,
-        padding: 10,
-        borderRadius: 4,
-        borderWidth: 2,
-        width: 120,
-        height: 40,
-        backgroundColor: blue,
-        flex: 1
-
-
-    },
-    btnor: {
-        alignSelf: 'center',
-        margin: 10,
-        padding: 10,
-        borderRadius: 4,
-        borderWidth: 2,
-        width: 120,
-        height: 40,
-        backgroundColor: orange,
-        flex: 1
-    },
-    btnylw: {
-        alignSelf: 'center',
-        margin: 10,
-        padding: 10,
-        borderRadius: 4,
-        borderWidth: 2,
-        width: 120,
-        height: 40,
-        backgroundColor: '#ffff1a',
-        flex: 1
     }
-
-
 })
 export default connect(mapStateToProps)(Quiz)
